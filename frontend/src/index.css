@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+/* ── GoalMind Color Palette ─────────────────────────────────────── */
+@theme {
+  /* Core Brand Colors */
+  --color-midnight: #0B1028;       /* Deep Midnight - primary dark background */
+  --color-indigo: #1E1B4B;         /* Deep Indigo - brand foundation */
+  --color-electric-indigo: #4F46E5; /* Electric Indigo - primary actions */
+  --color-cyan: #06B6D4;           /* Electric Cyan - research, data flow */
+  --color-emerald: #10B981;        /* Emerald - validated insights */
+  --color-cloud: #F8FAFC;          /* Cloud White - light background */
+  --color-slate-border: #E2E8F0;   /* Slate Border - dividers, inputs */
+  --color-slate-gray: #64748B;     /* Slate Gray - secondary text */
+
+  /* Semantic aliases for components */
+  --color-primary: var(--color-electric-indigo);
+  --color-primary-hover: #4338CA;
+  --color-primary-light: #EEF2FF;
+  --color-secondary: var(--color-cyan);
+  --color-secondary-hover: #0891B2;
+  --color-success: var(--color-emerald);
+  --color-success-light: #D1FAE5;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  
+  --color-surface: var(--color-cloud);
+  --color-surface-elevated: #FFFFFF;
+  --color-on-surface: var(--color-midnight);
+  --color-on-surface-muted: var(--color-slate-gray);
+  --color-border: var(--color-slate-border);
+
+  /* Dark mode */
+  --color-dark-surface: var(--color-midnight);
+  --color-dark-elevated: var(--color-indigo);
+  --color-dark-border: #334155;
+  --color-on-dark: var(--color-cloud);
+  --color-on-dark-muted: #94A3B8;
+
+  /* Gradient */
+  --gradient-brand: linear-gradient(110deg, var(--color-electric-indigo) 0%, var(--color-cyan) 52%, var(--color-emerald) 100%);
+  --gradient-brand-reverse: linear-gradient(290deg, var(--color-electric-indigo) 0%, var(--color-cyan) 52%, var(--color-emerald) 100%);
+
+  /* Typography */
+  --font-headline: "Inter", sans-serif;
+  --font-body: "Space Grotesk", monospace;
+  --font-mono: "Space Grotesk", monospace;
+
+  /* Brutalist */
+  --border-width-3: 3px;
+  --border-width-4: 4px;
+  --shadow-brutal: 4px 4px 0px 0px var(--color-midnight);
+  --shadow-brutal-sm: 2px 2px 0px 0px var(--color-midnight);
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ── Brutalist Utilities ──────────────────────────────────────── */
+.brutalist-shadow {
+  box-shadow: var(--shadow-brutal);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.brutalist-shadow-sm {
+  box-shadow: var(--shadow-brutal-sm);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.active-press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px 0px var(--color-midnight);
+}
+
+.terminal-grid {
+  background-image: radial-gradient(var(--color-on-surface) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+/* ── Gradient Utilities ───────────────────────────────────────── */
+.bg-brand-gradient {
+  background: var(--gradient-brand);
+}
+
+.text-brand-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-brand-gradient {
+  border-image: var(--gradient-brand) 1;
+}
+
+/* ── Status Flags ─────────────────────────────────────────────── */
+.status-success-badge {
+  background-color: var(--color-success-light);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.status-error-badge {
+  background-color: #FEE2E2;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.status-warning-badge {
+  background-color: #FEF3C7;
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.status-info-badge {
+  background-color: #E0F2FE;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* ── Animations ───────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes pulse-brand {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-marquee { display: flex; width: 200%; animation: marquee 20s linear infinite; }
+.animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+.animate-slide-right { animation: slide-right 0.3s ease-out forwards; }
+.animate-count-up { animation: count-up 0.3s ease-out forwards; }
+.animate-pulse-brand { animation: pulse-brand 2s ease-in-out infinite; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-surface); border-left: 1px solid var(--color-border); }
+::-webkit-scrollbar-thumb { background: var(--color-slate-gray); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* ── React Flow Overrides ─────────────────────────────────────── */
+.react-flow__background { background: transparent !important; }
+.react-flow__minimap { display: none; }
+.react-flow__controls { display: none; }
+.react-flow__attribution { display: none !important; }
+
+/* ── Focus Styles ─────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Selection ────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ── Dark Mode Support ────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: var(--color-dark-surface);
+    --color-surface-elevated: var(--color-dark-elevated);
+    --color-on-surface: var(--color-on-dark);
+    --color-on-surface-muted: var(--color-on-dark-muted);
+    --color-border: var(--color-dark-border);
+  }
+  
+  .brutalist-shadow {
+    box-shadow: 4px 4px 0px 0px var(--color-cloud);
+  }
+  
+  .brutalist-shadow-sm {
+    box-shadow: 2px 2px 0px 0px var(--color-cloud);
+  }
+  
+  .active-press:active {
+    box-shadow: 0px 0px 0px 0px var(--color-cloud);
+  }
+  
+  .terminal-grid {
+    background-image: radial-gradient(var(--color-cloud) 1px, transparent 1px);
+  }
+  
+  ::-webkit-scrollbar-track { 
+    background: var(--color-dark-surface); 
+    border-left: 1px solid var(--color-dark-border); 
+  }
+  ::-webkit-scrollbar-thumb { background: var(--color-on-dark-muted); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+}
